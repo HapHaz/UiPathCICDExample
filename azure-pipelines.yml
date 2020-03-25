@@ -36,6 +36,7 @@ steps:
     version: '$(Major).$(Minor).$(Build.BuildNumber).$(RevisionNumber)'
     platformVersion: '19.10.5'
     uninstallOption: 'ifdifferent'
+    outputFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
