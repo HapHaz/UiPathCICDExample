@@ -29,6 +29,9 @@ steps:
       Write-Output ("##vso[task.setvariable variable=Major;]$major")
       Write-Output ("##vso[task.setvariable variable=Minor;]$minor")
       Write-Output ("##vso[task.setvariable variable=RevisionNumber;]$revNumber")
+      echo $major
+      echo $minor
+      echo $revNumber
 - task: UiPathPackage@1
   inputs:
     packageAction: 'pack'
