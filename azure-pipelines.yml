@@ -46,11 +46,18 @@ steps:
     targetType: 'inline'
     script: |
       cd "C:\Program Files (x86)\UiPath\Studio"  
-      .\UiPath.Studio.CommandLine.exe analyze -p D:/a/1/s/project.json | ConvertFrom-Json.results | Export-CSV D:/a/1/s/analysis.csv -NoTypeInformation
-      Get-Content D:/a/1/s/analysis.csv
+      .\UiPath.Studio.CommandLine.exe analyze -p D:/a/1/s/project.json > - task: PublishBuildArtifacts@1
+      Get-Content D:/a/1/s/analysis.json
       
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'UiPathArtifact'
     publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'D:/a/1/s/analysis.json'
+    ArtifactName: 'WorkflowAnalysis'
+    publishLocation: 'Container'
+
