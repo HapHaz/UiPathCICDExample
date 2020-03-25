@@ -46,7 +46,8 @@ steps:
     targetType: 'inline'
     script: |
       cd "C:\Program Files (x86)\UiPath\Studio"  
-      .\UiPath.Studio.CommandLine.exe analyze -p D:/a/1/s/project.json
+      .\UiPath.Studio.CommandLine.exe analyze -p D:/a/1/s/project.json | ConvertFrom-Json.results | Export-CSV D:/a/1/s/analysis.csv -NoTypeInformation
+      Get-Content D:/a/1/s/analysis.csv
       
 - task: PublishBuildArtifacts@1
   inputs:
